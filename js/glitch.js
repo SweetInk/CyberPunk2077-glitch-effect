@@ -9,16 +9,11 @@
 
     var _DEFAULT_GLITCH_INTERVAL = 50;
 
-    function Glitch(imgNode) {
-        if (imgNode && !imgNode.TAG === "IMG") {
-            console.warn("target element not a <img> type", imgNode);
-            return;
-        }
-        this.elem = imgNode;
-        this.frame = 0;
+    function _init() {
+        this.timerId = 0;
         var canvas = document.createElement("canvas");
         var dummyCanvas = document.createElement("canvas");
-        this.timerId = 0;
+        var imgNode = this.elem;
         canvas.width = imgNode.width;
         canvas.height = imgNode.height;
         dummyCanvas.width = imgNode.width;
@@ -27,9 +22,7 @@
         this.canvas.className = "glitch";
         this.hratio = this.canvas.height / 430;
         this.ctx = this.canvas.getContext("2d");
-        setTimeout(function () {
-            this.ctx.drawImage(this.elem, 0, 0);
-        }.bind(this), 300);
+        this.ctx.drawImage(this.elem, 0, 0);
         this.elem.parentNode.style = `width:${canvas.width}px;margin-right:0px;`;
         this.elem.parentNode.insertBefore(dummyCanvas, this.elem);
         this.elem.parentNode.replaceChild(canvas, this.elem);
@@ -40,6 +33,22 @@
             clearInterval(this.timerId);
             this.ctx.drawImage(this.elem, 0, 0);
         }.bind(this));
+    }
+    function Glitch(imgNode) {
+        if (imgNode && !imgNode.TAG === "IMG") {
+            console.warn("target element not a <img> type", imgNode);
+            return;
+        }
+        this.elem = imgNode;
+        this.frame = 0;
+        if (imgNode.width <= 0) {
+            imgNode.onload = function () {
+                _init.call(this);
+            }.bind(this)
+        } else {
+            _init.call(this);
+        }
+
 
         /**
          *  enerate the glitch slip effect
