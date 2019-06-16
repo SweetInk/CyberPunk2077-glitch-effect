@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberPunk 2077 Glitch effect</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="./js/glitch.js"></script>
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="glitch-wrapper">
+        <img alt="" src="images/minion.jpg">
+    </div>
+    <div class="glitch-wrapper">
+        <img alt="" src="images/night-city.jpg">
+    </div>
+    <div class="glitch-wrapper">
+        <img alt="" src="images/Now_arriving_at_destination-zh-cn-1a4b8aea.jpg">
+    </div>
+    <div class="glitch-wrapper">
+        <img alt="" src="images/Cyberpunk2077_Smoke_and_mirrors-RGB-zh-cn-121d0d9b.jpg">
+    </div>
+</div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $("img", ".container").each(function (index, item) {
+            console.log("process item:", item, item.width, item.height);
+            var glitch = new Glitch(item);
+        });
+    });
+</script>
+</html>

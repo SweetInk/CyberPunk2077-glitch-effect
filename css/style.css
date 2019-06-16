@@ -1,0 +1,58 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    -webkit-box-sizing: content-box;
+    box-sizing: initial;
+}
+
+.container .glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.container img {
+    display: block;
+    max-width: 100%;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.container {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: 32.81% 23.62% 23.62%;
+    grid-template-rows: repeat(2, minmax(48.31%, auto));
+}
+
+.container .glitch-wrapper:first-child {
+    grid-column: 1;
+    grid-row: 1/span 2;
+}
+
+.glitch-wrapper {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+    text-align: center;
+}
+
+
+.container canvas {
+    display: block;
+    max-width: 100%;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+    margin: 0 auto;
+    cursor: pointer;
+}
